@@ -1,12 +1,35 @@
 # SimplePractice Test Automation
 
-Framework de automatización de pruebas para SimplePractice usando Selenium y pytest.
+Test automation framework for SimplePractice using Selenium and pytest.
 
-## Configuración
+## Installation
 
-### Variables de Entorno
+### Prerequisites
 
-Para mayor seguridad, las credenciales se pueden configurar mediante variables de entorno:
+- Python 3.7 or higher
+- pip (Python package installer)
+
+### Install Dependencies
+
+Install all required packages from `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+This will install the following packages:
+- `pytest` - Testing framework
+- `selenium` - Web automation library
+- `webdriver-manager` - Automatic driver management
+- `pytest-html` - HTML report generation
+- `pytest-xdist` - Parallel test execution
+- `python-dotenv` - Environment variable management
+
+## Configuration
+
+### Environment Variables
+
+For security, credentials can be configured using environment variables:
 
 #### Windows (PowerShell)
 ```powershell
@@ -26,51 +49,45 @@ export SP_USERNAME="your_email@example.com"
 export SP_PASSWORD="your_password"
 ```
 
-#### Usando archivo .env (opcional)
+#### Using .env file (optional)
 
-Si prefieres usar un archivo `.env`, puedes instalar `python-dotenv`:
+If you prefer to use a `.env` file, create one in the project root:
 
-```bash
-pip install python-dotenv
-```
-
-Y crear un archivo `.env` en la raíz del proyecto:
-
-```
+```env
 SP_USERNAME=your_email@example.com
 SP_PASSWORD=your_password
 ```
 
-**Nota:** El archivo `.env` está en `.gitignore` y no se subirá al repositorio.
+**Note:** The `.env` file is in `.gitignore` and will not be committed to the repository.
 
-## Ejecución de Tests
+## Running Tests
 
 ```bash
-# Ejecutar todos los tests
+# Run all tests
 pytest
 
-# Ejecutar tests específicos
+# Run specific test files
 pytest tests/test_login.py
 pytest tests/test_tasks.py
 
-# Ejecutar con marcadores
+# Run with markers
 pytest -m positive
 pytest -m negative
 
-# Ejecutar con navegador específico
+# Run with specific browser
 pytest --browser=chrome
 pytest --browser=firefox
 
-# Ejecutar con salida detallada
+# Run with detailed output
 pytest -v -s
 ```
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 SimplePracticeTest/
 ├── pages/          # Page Object Models
 ├── tests/          # Test cases
-├── utils/          # Utilidades
-└── reports/        # Reportes de tests
+├── utils/          # Utilities
+└── reports/        # Test reports
 ```
