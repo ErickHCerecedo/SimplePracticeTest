@@ -16,7 +16,6 @@ class TestLogin:
     @pytest.mark.login
     @pytest.mark.negative
     @pytest.mark.parametrize("username, password, expected_error_message", [
-        #("somab63683@lewenbo.com", "invalid_password", ""),
         ("invalid@email.com", "GoodLuck777", "Couldn't sign in Enter the email associated with your account and double-check your password. If you're still having trouble, you can reset your password.")
     ])
     def test_login_negative(self, driver, username, password, expected_error_message):

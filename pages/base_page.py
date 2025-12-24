@@ -5,6 +5,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.common.exceptions import NoSuchElementException
 
+# BasePage implements Page Object Model (POM) pattern to centralize common web interactions.
+# Using explicit waits (WebDriverWait) instead of implicit waits provides better control,
+# avoids race conditions, and makes test failures more meaningful with specific timeout errors.
 class BasePage:
     def __init__(self, driver: WebDriver):
         self._driver = driver
@@ -43,6 +46,8 @@ class BasePage:
         self._wait_until_element_is_visible(locator, time)
         return self._find(locator).text
     
+    # Text normalization handles inconsistent whitespace and newlines across different browsers
+    # and screen sizes, making assertions more reliable and less brittle.
     def _normalize_text(self, text: str) -> str:
         import re
         normalized = re.sub(r'[\n\r\t]+', ' ', text)

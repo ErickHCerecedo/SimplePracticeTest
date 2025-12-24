@@ -5,6 +5,9 @@ from selenium.webdriver.support import expected_conditions as ec
 
 from pages.base_page import BasePage
 
+# LoginPage separates login logic from tests, enabling reuse across multiple test scenarios.
+# Separating execute_login() from wait_for_login_success() allows tests to handle
+# both positive and negative login flows with explicit control over wait conditions.
 class LoginPage(BasePage):
     __url = "https://account.simplepractice.com/"
     __expected_url = "https://secure.simplepractice.com/calendar/appointments"
@@ -38,8 +41,6 @@ class LoginPage(BasePage):
         return super()._is_displayed(self.__error_message)
     
     def normalize_text(self, text: str) -> str:
-        """Normaliza el texto usando el método de BasePage. 
-        Útil para normalizar mensajes esperados en los tests."""
         return super()._normalize_text(text)
 
     @property
